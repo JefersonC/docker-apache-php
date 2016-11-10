@@ -13,6 +13,7 @@
     - php-apc
     - php5-pgsql
     - php5-mysql
+    - php5-readline
     - php-pear
   tags: php
 
