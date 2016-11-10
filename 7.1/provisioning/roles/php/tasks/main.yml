@@ -1,0 +1,33 @@
+- name: 'Add repo PHP 7.1 (Ondřej Surý PPA)'
+  apt_repository: repo='ppa:ondrej/php'
+
+- name: 'PHP + libraries installed'
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - php7.1-cli
+    - php7.1-readline
+    - php7.1-intl
+    - php7.1-json
+    - php7.1-curl
+    - php7.1-gd
+    - php7.1-pgsql
+    - php7.1-mysql
+    - php7.1-mbstring
+    - php7.1-zip
+    - php7.1-xml
+    - php7.1-mcrypt
+  tags: php
+
+- name: Enable PHP modules
+  shell: phpenmod {{ item }}
+  with_items:
+    - mcrypt
+  tags: php
+
+- name: Configure PHP settings
+  template: src=php.ini dest=/etc/php/7.1/apache2/conf.d/custom.ini
+  tags: php
+
+- name: Chown PHP sessions dir
+  file: path=/var/lib/php state=directory owner={{ username }} group={{ username }}
+  tags: php

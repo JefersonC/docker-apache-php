@@ -1,0 +1,6 @@
+- name: 'Add Git repo'
+  apt_repository: repo='ppa:git-core/ppa'
+
+- name: 'Git installed'
+  apt: pkg=git state=latest
+  tags: git

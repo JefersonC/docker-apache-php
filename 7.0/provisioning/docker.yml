@@ -22,5 +22,6 @@
     - apache
     - php
     - composer
+    - git
 #    - bower
     - app

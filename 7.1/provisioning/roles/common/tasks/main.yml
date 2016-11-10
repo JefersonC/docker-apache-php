@@ -1,0 +1,9 @@
+- name: Install common packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - curl
+  tags: common
+
+- name: Configure entry point
+  template: src=entrypoint.sh dest=/sbin/entrypoint.sh
+  tags: common
